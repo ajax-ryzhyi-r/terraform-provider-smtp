@@ -241,7 +241,7 @@ func (r *sendMailResource) Update(ctx context.Context, req resource.UpdateReques
 
 	// Upgrade the connection to TLS.
 	if r.client.auth != nil {
-		err = conn.StartTLS(&tls.Config{ServerName: hostPort, InsecureSkipVerify: true})
+		err = conn.StartTLS(&tls.Config{ServerName: r.client.host, InsecureSkipVerify: true})
 		if err != nil {
 			resp.Diagnostics.AddError("Error upgrading connection to TLS:", err.Error())
 			return
